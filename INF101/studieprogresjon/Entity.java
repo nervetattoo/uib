@@ -12,6 +12,9 @@ import studieprogresjon.Position;
 public abstract class Entity {
     Position pos;
     boolean collided = false;
+    Entity collidedWith;
+
+    public abstract char getSymbol();
 
     public Entity(Position p) {
         this.pos = p;
@@ -75,6 +78,20 @@ public abstract class Entity {
     }
 
     /**
+     * Set Entity to be collided with following entity
+     *
+     * @return void
+     * @param Entity e
+     */
+    public void setCollidedWith(Entity e) {
+        this.collidedWith = e;
+    }
+
+    public Entity getCollidedWith() {
+        return this.collidedWith;
+    }
+
+    /**
      * Check for collision against table of other Entities
      *
      * @return boolean
@@ -83,7 +100,11 @@ public abstract class Entity {
     public boolean checkCollision(Entity[] entities) {
         for (Entity e: entities) {
             if (this.getPosition().equals(e.getPosition())) {
-                return true;
+                if (this != e) {
+                    this.setCollidedWith(e);
+                    this.setCollided(true);
+                    return true;
+                }
             }
         }
         return false;

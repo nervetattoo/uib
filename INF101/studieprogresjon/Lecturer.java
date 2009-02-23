@@ -7,6 +7,13 @@ public class Lecturer extends Entity {
         super(pos);
     }
     public char getSymbol() {
+        if (isCollided() == true) {
+            String className = getCollidedWith().getClass().getName();
+            if (className == "studieprogresjon.Lecturer")
+                return 'X';
+            else if (className == "studieprogresjon.Student")
+                return 'Z';
+        }
         return '*';
     }
 

@@ -8,6 +8,10 @@ public class Student extends Entity {
     }
 
     public char getSymbol() {
+        if (isCollided() == true) {
+            if (getCollidedWith().getClass().getName() == "studieprogresjon.Lecturer")
+                return 'Z';
+        }
         return 's';
     }
     

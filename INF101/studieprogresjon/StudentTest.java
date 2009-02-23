@@ -7,7 +7,16 @@ public class StudentTest extends TestCase {
     public void testGetSymbol() {
         Position pos = new Position(0,0);
         Student student = new Student(pos);
-        assertTrue(student.getSymbol() == 's');
+        assertEquals(student.getSymbol(), 's');
+    }
+    public void testGetCollidedSymbol() {
+        // Make it collided with lecturer
+        Position pos = new Position(0,0);
+        Student student = new Student(pos);
+        student.setCollided(true);
+        Lecturer lect = new Lecturer(pos);
+        student.setCollidedWith(lect);
+        assertEquals('Z', student.getSymbol());
     }
 
     public void testRun() {

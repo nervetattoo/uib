@@ -6,4 +6,8 @@ public class EntityMock extends Entity {
     public EntityMock(Position pos) {
         super(pos);
     }
+
+    public char getSymbol() {
+        return '.';
+    }
 }
