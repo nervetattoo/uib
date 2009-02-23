@@ -1,0 +1,7 @@
+#!/bin/bash
+export CLASSPATH=/usr/share/java/junit.jar:/home/raymond/Documents/UiB/INF101/
+# Compile class and its test
+echo "Compiling class and its test"
+javac $1.java $1Test.java
+echo "Running test cases"
+java junit.textui.TestRunner studieprogresjon.$1Test
