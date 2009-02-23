@@ -3,6 +3,8 @@ package studieprogresjon;
 import studieprogresjon.Student;
 import studieprogresjon.Lecturer;
 import studieprogresjon.EntityMapper;
+import java.util.Random;
+import studieprogresjon.Position;
 
 /**
  * Main class for game.
@@ -44,6 +46,13 @@ public class Semester {
     public Lecturer[] getLecturers() {
         return this.mapper.getLecturers();
     }
+    /**
+     * Get Student
+     * @return Student
+     */
+    public Student getStudent() {
+        return this.mapper.getStudent();
+    }
 
     /**
      * Register a new lecturer onto game
@@ -67,6 +76,35 @@ public class Semester {
                 i++;
         }
         return i;
+    }
+
+    /**
+     * Check if coordinates are free
+     *
+     * @return boolean
+     * @param int x
+     * @param int y
+     */
+    public boolean isFree(int x, int y) {
+        if (this.mapper.getSymbol(x,y) == '.')
+            return true;
+        else
+            return false;
+    }
+    /**
+     * Get free coordinates on map
+     * @return Position pos
+     */
+    public Position getFree() {
+        Random r = new Random();
+        int x,y;
+        while (true) {
+            x = r.nextInt(width);
+            y = r.nextInt(height);
+            if (this.isFree(x,y))
+                break;
+        }
+        return new Position(x,y);
     }
     
     /**

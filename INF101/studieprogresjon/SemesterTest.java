@@ -45,8 +45,35 @@ public class SemesterTest extends TestCase {
             "|..*..|\n" +
             "|.....|\n" +
             "-------";
-        //System.out.println(shouldBe);
-        //System.out.println(sem.getMap());
         assertEquals(shouldBe, sem.getMap());
+    }
+
+    public void testIsFree() {
+        // Check if space is free on map
+        Semester sem = new Semester(
+            new Student(new Position(0,0)), 1, 5, 5
+        );
+        sem.registerLecturer(new Lecturer(new Position(2,3)));
+        assertTrue(sem.isFree(0,1));
+        assertFalse(sem.isFree(0,0));
+        assertFalse(sem.isFree(2,3));
+    }
+
+    public void testGetFree() {
+        // Check if space is free on map
+        Semester sem = new Semester(
+            new Student(new Position(0,0)), 1, 5, 5
+        );
+        sem.registerLecturer(new Lecturer(new Position(2,3)));
+
+        Position pos = sem.getFree();
+        boolean free = true;
+        for (Lecturer l: sem.getLecturers()) {
+            if (l.getPosition().equals(pos))
+                free = false;
+        }
+        if (pos.equals(sem.getStudent().getPosition()) || free == false) {
+            fail("getFree() failed");
+        }
     }
 }
