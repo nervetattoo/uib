@@ -53,4 +53,13 @@ public class Position {
         else if (p.getY() < y)
             y--;
     }
+    
+    /**
+     * String representation
+     *
+     * @return String
+     */
+    public String toString() {
+        return "X: " + x + " Y: " + y;
+    }
 }

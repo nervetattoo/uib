@@ -58,6 +58,21 @@ class EntityMapper {
     }
 
     /**
+     * Return the Student object
+     *
+     * @return Student
+     */
+    public Student getStudent() {
+        Student ret = new Student();
+        for (Entity e: entities) {
+            if (e instanceof studieprogresjon.Student) {
+                ret = (Student) e;
+            }
+        }
+        return ret;
+    }
+
+    /**
      * Return symbol for given coordinates
      *
      * @return char

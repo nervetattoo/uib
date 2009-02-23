@@ -6,6 +6,9 @@ public class Student extends Entity {
     public Student(Position pos) {
         super(pos);
     }
+    public Student() {
+        super(new Position(0,0));
+    }
 
     public char getSymbol() {
         if (isCollided() == true) {

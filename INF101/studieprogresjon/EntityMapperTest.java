@@ -47,4 +47,15 @@ public class EntityMapperTest extends TestCase {
         Lecturer[] lecturers = map.getLecturers();
         assertEquals(2, lecturers.length);
     }
+
+    public void testGetStudent() {
+        EntityMapper map = new EntityMapper(3);
+
+        map.registerEntity(new Student(new Position(1,1)));
+        map.registerEntity(new Lecturer(new Position(1,2)));
+        map.registerEntity(new Lecturer(new Position(1,2)));
+
+        Student stud = map.getStudent();
+        assertTrue(stud instanceof studieprogresjon.Student);
+    }
 }
