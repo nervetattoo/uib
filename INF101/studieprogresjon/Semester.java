@@ -122,7 +122,10 @@ public class Semester {
      * @return int
      */
     public int numberOfLecturers() {
-        return (this.width * this.level) / 5;
+        int num = (this.width * this.level) / 10;
+        if (num <= 2)
+            num = 2;
+        return num;
     }
 
     /**
