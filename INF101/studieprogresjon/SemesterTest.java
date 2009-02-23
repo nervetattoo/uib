@@ -26,10 +26,11 @@ public class SemesterTest extends TestCase {
             new Student(new Position(0,0)), 1, 5,5 
         );
         boolean res = sem.registerLecturer(new Lecturer(new Position(1,3)));
+        sem.registerLecturer(new Lecturer(new Position(4,3)));
         assertTrue(res);
         boolean res2 = sem.registerLecturer(new Lecturer(new Position(2,3)));
         assertFalse(res2);
-        assertEquals(1, sem.numberOfRegisteredLecturers());
+        assertEquals(2, sem.numberOfRegisteredLecturers());
     }
 
     public void testGetMap() {
