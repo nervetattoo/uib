@@ -32,5 +32,19 @@ public class EntityMapperTest extends TestCase {
         map.registerEntity(new Lecturer(new Position(1,2)));
 
         assertEquals('X', map.getSymbol(1,2));
+
+        // Test empty spot
+        assertEquals('.', map.getSymbol(3,2));
+    }
+
+    public void testGetLecturers() {
+        EntityMapper map = new EntityMapper(3);
+
+        map.registerEntity(new Student(new Position(1,1)));
+        map.registerEntity(new Lecturer(new Position(1,2)));
+        map.registerEntity(new Lecturer(new Position(1,2)));
+
+        Lecturer[] lecturers = map.getLecturers();
+        assertEquals(2, lecturers.length);
     }
 }

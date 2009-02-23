@@ -39,6 +39,23 @@ class EntityMapper {
             return false;
         }
     }
+    
+    /**
+     * Return all lecturer entities
+     *
+     * @return Lecturer
+     */
+    public Lecturer[] getLecturers() {
+        Lecturer[] ret = new Lecturer[entities.length - 1];
+        int i = 0;
+        for (Entity e: entities) {
+            if (e instanceof studieprogresjon.Lecturer) {
+                ret[i] = (Lecturer) e;
+                i++;
+            }
+        }
+        return ret;
+    }
 
     /**
      * Return symbol for given coordinates
@@ -66,7 +83,7 @@ class EntityMapper {
      *
      * @return int
      */
-        private int slotsUsed() {
+    private int slotsUsed() {
         int i = 0;
         for (Entity e: entities) {
             if (e instanceof Entity)
