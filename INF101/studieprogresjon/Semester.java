@@ -21,12 +21,16 @@ public class Semester {
         this.height = height;
         this.mapper = new EntityMapper(numberOfLecturers() + 1);
         this.mapper.registerEntity(student);
+    }
+
+    /**
+     * Register lecturers for map
+     */
+    public void registerLecturers() {
         // Register lecturers
-        /*
         for (int x = 0; x <= numberOfLecturers(); x++) {
-            this.mapper.registerEntity(new Lecturer(new Position(x,x)));
+            this.registerLecturer(new Lecturer(this.getFree()));
         }
-        */
     }
     
     /**
