@@ -115,7 +115,6 @@ class EntityMapper {
             // Need to be at this position
             if (e instanceof studieprogresjon.Entity) {
                 if (e.getPosition().equals(pos)) {
-                    e.checkCollision(entities);
                     return e.getSymbol();
                 }
             }

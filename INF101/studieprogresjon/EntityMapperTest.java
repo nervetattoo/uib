@@ -25,12 +25,14 @@ public class EntityMapperTest extends TestCase {
         // Register lecturers
         map.registerEntity(new Lecturer(new Position(1,2)));
 
+        map.calculateCollisions();
         assertEquals('s', map.getSymbol(1,1));
         assertEquals('*', map.getSymbol(1,2));
 
         // Register a collision between lecturers
         map.registerEntity(new Lecturer(new Position(1,2)));
 
+        map.calculateCollisions();
         assertEquals('X', map.getSymbol(1,2));
 
         // Test empty spot
