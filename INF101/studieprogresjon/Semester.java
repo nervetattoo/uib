@@ -103,7 +103,7 @@ public class Semester {
             System.out.println("Illegal user input, quitting");
             System.exit(65);
         }
-        if (i <= 9 && i > 0) {
+        if (i > 9 && i < 1) {
             System.out.println("Illegal user input, quitting");
             System.exit(65);
         }
