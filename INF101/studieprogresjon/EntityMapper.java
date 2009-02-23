@@ -10,7 +10,6 @@ import studieprogresjon.Lecturer;
  */
 class EntityMapper {
     private Entity[] entities;
-    private int size = 0;
 
     
     /**
@@ -19,7 +18,6 @@ class EntityMapper {
      * @param int size Max entities to register
      */
     public EntityMapper(int size) {
-        this.size = size;
         entities = new Entity[size];
     }
     
@@ -31,7 +29,7 @@ class EntityMapper {
      */
     public boolean registerEntity(Entity entity) {
         int used = this.slotsUsed();
-        if ((this.size - used) > 0) {
+        if ((entities.length - used) > 0) {
             entities[used] = entity;
             return true;
         }
@@ -48,7 +46,7 @@ class EntityMapper {
      * lecturers
      */
     public Lecturer[] getLecturers(boolean active) {
-        Lecturer[] ret = new Lecturer[this.size];
+        Lecturer[] ret = new Lecturer[entities.length];
         int i = 0;
         if (active)
             this.calculateCollisions();
