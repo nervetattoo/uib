@@ -68,6 +68,6 @@ public class EntityMapperTest extends TestCase {
         assertEquals(2, map.getLecturers(true).length);
 
         map.registerEntity(new Lecturer(new Position(2,2)));
-        assertEquals(2, map.getLecturers(true).length);
+        assertEquals(1, map.getLecturers(true).length);
     }
 }

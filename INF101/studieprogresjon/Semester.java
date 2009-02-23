@@ -4,6 +4,7 @@ import studieprogresjon.Student;
 import studieprogresjon.Lecturer;
 import studieprogresjon.EntityMapper;
 import java.util.Random;
+import java.util.Scanner;
 import studieprogresjon.Position;
 
 /**
@@ -14,6 +15,7 @@ import studieprogresjon.Position;
 public class Semester {
     private int level,width,height;
     private EntityMapper mapper;
+    private boolean won = false;
 
     public Semester(Student student, int level, int width, int height) {
         this.level = level;
@@ -21,6 +23,87 @@ public class Semester {
         this.height = height;
         this.mapper = new EntityMapper(numberOfLecturers() + 1);
         this.mapper.registerEntity(student);
+    }
+
+    /**
+     * Run game
+     * @return void
+     */
+    public void runGame() {
+        // Let user start game
+        System.out.println("Starter semester " + this.level);
+        System.out.println("Oppretter " + numberOfLecturers() + " forelesere");
+        Student stud;
+        this.registerLecturers();
+        Position pos;
+        while (true) {
+            // Draw map
+            System.out.println(getMap());
+            System.out.println("Use keypad to navigate (1-9):");
+            Direction dir = readInput();
+            // Move player
+            stud = this.mapper.getStudent();
+            pos = stud.getPosition();
+            pos.moveTowards(new Position(
+                pos.getX() + Direction.dx(dir),
+                pos.getY() + Direction.dy(dir)
+            ));
+            stud.setPosition(pos);
+            // Check outside board
+            if (this.outsideMap(pos)) {
+                this.won = false;
+                break;
+            }
+            // Move lecturers
+            this.mapper.moveLecturers(pos);
+            this.mapper.calculateCollisions();
+            // If all lecturers are busy in meetings, hurray
+            if (this.mapper.getLecturers(true).length == 0) {
+                this.won = true;
+                break;
+            }
+            // If meeting with lecturer, dead
+            if (stud.getSymbol() == 'Z') {
+                this.won = false;
+                break;
+            }
+        }
+    }
+
+    /**
+     * Test if game is won (true) or lost (false)
+     */
+    public boolean won() {
+        return this.won;
+    }
+
+    /**
+     * Check if Position is outside map
+     * @param Position pos
+     */
+    private boolean outsideMap(Position pos) {
+        if (pos.getX() >= this.width || pos.getX() < 0)
+            return true;
+        if (pos.getY() >= this.height || pos.getY() < 0)
+            return true;
+        return false;
+    }
+    
+    /**
+     * Read input
+     * @return void
+     */
+    public Direction readInput() {
+        Scanner sc = new Scanner(System.in);
+        int i = 10;
+        try {
+            i = sc.nextInt();
+        }
+        catch (Exception e) {
+            System.out.println("Illegal user input, quitting");
+            System.exit(65);
+        }
+        return Direction.fromNum(i);
     }
 
     /**

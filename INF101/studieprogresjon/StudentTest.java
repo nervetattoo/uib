@@ -19,12 +19,20 @@ public class StudentTest extends TestCase {
         assertEquals('Z', student.getSymbol());
     }
 
-    public void testRun() {
+    public void testRunTowards() {
         Position pos = new Position(0,0);
         Position to = new Position(2,2);
         Student student = new Student(pos);
-        student.run(to);
+        student.runTowards(to);
         assertTrue(student.getX() == 1 &&
+            student.getY() == 1);
+    }
+
+    public void testRun() {
+        Position pos = new Position(0,0);
+        Student student = new Student(pos);
+        student.run(Direction.S);
+        assertTrue(student.getX() == 0 &&
             student.getY() == 1);
     }
 }

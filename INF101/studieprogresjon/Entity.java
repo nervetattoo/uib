@@ -111,4 +111,11 @@ public abstract class Entity {
         }
         return false;
     }
+
+    /**
+     * Print as text
+     */
+    public String toString() {
+        return "Entity with pos: " + this.getPosition().toString();
+    }
 }

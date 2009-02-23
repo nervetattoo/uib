@@ -24,9 +24,24 @@ public class Student extends Entity {
      * @param Position pos 
      * @return void
      */
-    public void run(Position pos) {
+    public void runTowards(Position pos) {
         Position p = getPosition();
         p.moveTowards(pos);
+        setPosition(p);
+    }
+
+    /**
+     * Run towards position
+     *
+     * @param Position pos 
+     * @return void
+     */
+    public void run(Direction d) {
+        Position p = getPosition();
+        Position to = new Position(
+            Direction.dx(d),
+            Direction.dy(d));
+        p.moveTowards(to);
         setPosition(p);
     }
 }
