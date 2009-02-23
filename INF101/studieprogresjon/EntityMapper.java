@@ -52,7 +52,7 @@ class EntityMapper {
         int i = 0;
         for (Entity e: entities) {
             if (e instanceof studieprogresjon.Lecturer) {
-                if (active && e.getSymbol() != '*') {
+                if ((active && e.getSymbol() != '*') || !active) {
                     ret[i] = (Lecturer) e;
                     i++;
                 }
