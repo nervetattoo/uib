@@ -99,13 +99,11 @@ public abstract class Entity {
      */
     public boolean checkCollision(Entity[] entities) {
         for (Entity e: entities) {
-            if (e instanceof studieprogresjon.Entity) {
-                if (this.getPosition().equals(e.getPosition())) {
-                    if (this != e) {
-                        this.setCollidedWith(e);
-                        this.setCollided(true);
-                        return true;
-                    }
+            if (this.getPosition().equals(e.getPosition())) {
+                if (this != e) {
+                    this.setCollidedWith(e);
+                    this.setCollided(true);
+                    return true;
                 }
             }
         }
