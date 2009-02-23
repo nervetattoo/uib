@@ -44,17 +44,24 @@ class EntityMapper {
      * Return all lecturer entities
      *
      * @return Lecturer
+     * @param boolean active Whether or not to just get active
+     * lecturers
      */
-    public Lecturer[] getLecturers() {
+    public Lecturer[] getLecturers(boolean active) {
         Lecturer[] ret = new Lecturer[entities.length - 1];
         int i = 0;
         for (Entity e: entities) {
             if (e instanceof studieprogresjon.Lecturer) {
-                ret[i] = (Lecturer) e;
-                i++;
+                if (active && e.getSymbol() != '*') {
+                    ret[i] = (Lecturer) e;
+                    i++;
+                }
             }
         }
         return ret;
+    }
+    public Lecturer[] getLecturers() {
+        return this.getLecturers(false);
     }
 
     /**
