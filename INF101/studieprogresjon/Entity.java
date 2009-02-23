@@ -17,26 +17,69 @@ public abstract class Entity {
         this.pos = p;
     }
 
+    
+    /**
+     * Set position for Entity
+     *
+     * @return void
+     * @param Position p
+     */
     public void setPosition(Position p) {
         this.pos = p;
     }
 
+    /**
+     * Return position for Entity
+     *
+     * @return Position
+     */
     public Position getPosition() {
         return this.pos;
     }
+
+    /**
+     * Return x position for Entity
+     *
+     * @return int
+     */
     public int getX() {
         return pos.getX();
     }
+
+    /**
+     * Return y position for Entity
+     *
+     * @return int
+     */
     public int getY() {
         return pos.getY();
     }
 
+    /**
+     * State whether Entity is collided or not
+     *
+     * @return boolean
+     */
     public boolean isCollided() {
         return this.collided;
     }
-    public void setCollided() {
-        this.collided = true;
+
+    /**
+     * Set Entity to be collided
+     *
+     * @return void
+     * @param boolean state
+     */
+    public void setCollided(boolean state) {
+        this.collided = state;
     }
+
+    /**
+     * Check for collision against table of other Entities
+     *
+     * @return boolean
+     * @param Entity[] entities
+     */
     public boolean checkCollision(Entity[] entities) {
         for (Entity e: entities) {
             if (this.getPosition().equals(e.getPosition())) {
